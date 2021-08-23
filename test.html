@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>abc</title>
+	<meta charset="utf-8">
+</head>
+<body>
+  <div id="iqacforms_iasemcal" class="container" style="margin-top:2rem;margin-bottom:2rem;">
+      <div class="row">
+        <h6 class="col-12 text-center text-uppercase text-danger"><u>Do not use this application. This application is in development & testing phase.</u></h6>
+      </div>
+
+      <div class="row">
+        <h3 class="col-12 text-center text-uppercase"><u>Department Internal Assessment Semester Calendar</u></h3>
+      </div>
+
+      <form id="iqac_forms_ia_sem_cal" class="mt-3">
+        <div class="form-group row">
+          <label for="name" class="col-sm-3 col-form-label">Name of the Department</label>
+          
+          <input type="text" class="form-control col-sm-9 text-capitalize" name="dept_name" value="{{$data['department']}}" readonly>
+        </div>
+        <div class="form-group row">
+          <label for="name" class="col-sm-3 col-form-label">Academic Year</label>
+          <select class="form-control col-sm-9" id="academic_year" required>
+            <option selected disabled>Select one</option>
+            @for ($i=1; $i <= 2; $i++)
+              <option value="{{date('Y')-$i}}">{{date('Y')-$i }}-{{date('Y')-$i+1}}</option>
+            @endfor
+          </select>
+        </div>
+        <div class="form-group row">
+          <label for="address" class="col-sm-3 col-form-label">Name of the Teacher</label>
+          <input type="text" class="form-control col-sm-9 text-capitalize" name="faculty_name" value="{{$data['name']}}" readonly>
+        </div>
+
+        <div class="input-field">
+          <table class="table table-bordered" id="table_field">
+            <tr>
+              <th>#</th>
+              <th>IA Component (Tests/Assignments/Projects etc.)</th>
+              <th>Month</th>
+              <th>Action</th>
+            </tr>
+            <tr>
+              <td>1.</td>
+              <td>
+                <select class="form-control ia_comp_select" required>
+                  <option selected disabled>Select one</option>
+                  <option value="Test">Test</option>
+                  <option value="Assignment">Assignment</option>
+                  <option value="Project">Project</option>
+                  <option value="Other">Other</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-control" required>
+                  <option selected disabled>Select one</option>
+                  <option value="january">January</option>
+                  <option value="february">February</option>
+                  <option value="march">March</option>
+                  <option value="april">April</option>
+                  <option value="may">May</option>
+                  <option value="june">June</option>
+                  <option value="july">July</option>
+                  <option value="august">August</option>
+                  <option value="september">September</option>
+                  <option value="october">October</option>
+                  <option value="november">November</option>
+                  <option value="december">December</option>
+                </select>
+              </td>
+              <td>
+                <input class="btn btn-warning" type="button" id="add" name="add" value="Add">
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-12 text-center">
+            <input type="submit" class="btn btn-success" value="Submit" id="submit"disabled />
+            </div>
+          </div>
+      </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+  function new_Row(rownum){
+         return '<tr><td class="sno">'+rownum+'.</td><td><select class="form-control ia_comp_select" required><option selected disabled>Select one</option><option value="Test">Test</option><option value="Assignment">Assignment</option><option value="Project">Project</option><option value="Other">Other</option></select></td><td><select class="form-control" required><option selected disabled>Select one</option><option value="january">January</option><option value="february">February</option><option value="march">March</option><option value="april">April</option><option value="may">May</option><option value="june">June</option><option value="july">July</option><option value="august">August</option><option value="september">September</option><option value="october">October</option><option value="november">November</option><option value="december">December</option></select></td><td><input class="btn btn-danger" type="button" id="remove" name="remove" value="Del"></td></tr>';
+
+
+    };
+
+
+
+  var max = 9;
+   var x = 1;
+
+   $('#add').click(function(){
+     if(x <= max){
+       var nr = new_Row(x+1);
+       $('#table_field').append(nr);
+       x++;
+     }
+
+   });
+   $('#table_field').on('click','#remove',function(){
+     $(this).closest('tr').remove();
+     cnt = 1;
+     $('.sno').each(function(){
+       $(this).first('td').html(++cnt+'.');
+     });
+     x--;
+   });
+
+   $(document).on({
+     change: function() {
+       var selected = $(this).val();
+       if(selected == 'Other'){
+         var cur_td = $(this).closest('td');
+         $(this).remove();
+         cur_td.html('<input class="form-control" type="text" name="other_ia_component" value="" placeholder="">')
+       }
+     }
+   }, '.ia_comp_select');
+
+  })
+    </script>
+      
+</body>
+</html>
