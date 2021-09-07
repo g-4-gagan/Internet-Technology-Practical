@@ -1,134 +1,154 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>abc</title>
+	<title>Accordian</title>
 	<meta charset="utf-8">
+  <style type="text/css">
+    .container{
+      width: 64%;
+      margin: auto;
+    }
+    .accordion {
+      background-color: #79B4B7;
+      color: #D4ECDD;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      text-align: left;
+      border: none;
+      outline: none;
+      transition: 0.4s;
+      margin-top: 15px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+    .active, .accordion:hover {
+      background-color: #00A19D;
+      color: white;
+    }
+
+    /* Style the accordion panel. Note: hidden by default */
+    .panel{
+      padding: 15px 18px;
+      background-color: #eeeeee;
+      border-radius: 10px;
+     /* margin-top: 5px;*/
+      display: none;
+      overflow: hidden;
+       transition: max-height 0.2s ease-out;
+    }
+
+    .panel table{
+      color: #112031;  
+      font-size: 1rem;   
+      font-weight: bold;
+      width: 80%;
+      margin: auto;
+    }
+
+    .item-row{
+      margin: auto;
+      margin-bottom: 12px;
+    }
+
+    .item-name{
+      min-width: 60%;
+      max-width: 80%;
+    }
+
+    .item-price{
+      float: right;
+    }
+
+    .accordion:after {
+      content: '\02795'; /* Unicode character for "plus" sign (+) */
+      font-size: 14px;
+      color: #082032;
+      float: right;
+      margin-left: 5px;
+    }
+
+    .active:after {
+      content: "\2796"; /* Unicode character for "minus" sign (-) */
+    }
+
+  </style>
 </head>
 <body>
-  <div id="iqacforms_iasemcal" class="container" style="margin-top:2rem;margin-bottom:2rem;">
-      <div class="row">
-        <h6 class="col-12 text-center text-uppercase text-danger"><u>Do not use this application. This application is in development & testing phase.</u></h6>
-      </div>
-
-      <div class="row">
-        <h3 class="col-12 text-center text-uppercase"><u>Department Internal Assessment Semester Calendar</u></h3>
-      </div>
-
-      <form id="iqac_forms_ia_sem_cal" class="mt-3">
-        <div class="form-group row">
-          <label for="name" class="col-sm-3 col-form-label">Name of the Department</label>
-          
-          <input type="text" class="form-control col-sm-9 text-capitalize" name="dept_name" value="{{$data['department']}}" readonly>
-        </div>
-        <div class="form-group row">
-          <label for="name" class="col-sm-3 col-form-label">Academic Year</label>
-          <select class="form-control col-sm-9" id="academic_year" required>
-            <option selected disabled>Select one</option>
-            @for ($i=1; $i <= 2; $i++)
-              <option value="{{date('Y')-$i}}">{{date('Y')-$i }}-{{date('Y')-$i+1}}</option>
-            @endfor
-          </select>
-        </div>
-        <div class="form-group row">
-          <label for="address" class="col-sm-3 col-form-label">Name of the Teacher</label>
-          <input type="text" class="form-control col-sm-9 text-capitalize" name="faculty_name" value="{{$data['name']}}" readonly>
-        </div>
-
-        <div class="input-field">
-          <table class="table table-bordered" id="table_field">
-            <tr>
-              <th>#</th>
-              <th>IA Component (Tests/Assignments/Projects etc.)</th>
-              <th>Month</th>
-              <th>Action</th>
-            </tr>
-            <tr>
-              <td>1.</td>
-              <td>
-                <select class="form-control ia_comp_select" required>
-                  <option selected disabled>Select one</option>
-                  <option value="Test">Test</option>
-                  <option value="Assignment">Assignment</option>
-                  <option value="Project">Project</option>
-                  <option value="Other">Other</option>
-                </select>
-              </td>
-              <td>
-                <select class="form-control" required>
-                  <option selected disabled>Select one</option>
-                  <option value="january">January</option>
-                  <option value="february">February</option>
-                  <option value="march">March</option>
-                  <option value="april">April</option>
-                  <option value="may">May</option>
-                  <option value="june">June</option>
-                  <option value="july">July</option>
-                  <option value="august">August</option>
-                  <option value="september">September</option>
-                  <option value="october">October</option>
-                  <option value="november">November</option>
-                  <option value="december">December</option>
-                </select>
-              </td>
-              <td>
-                <input class="btn btn-warning" type="button" id="add" name="add" value="Add">
-              </td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-12 text-center">
-            <input type="submit" class="btn btn-success" value="Submit" id="submit"disabled />
-            </div>
-          </div>
-      </form>
+  <div class="container">
+    <button class="accordion">Section 1</button>
+    <div class="panel">
+      <table>
+        <tr class="item-row">
+          <td class="item-name">Paneer</td>
+          <td class="item-price">120/150</td>
+        </tr>
+        <tr>
+          <td class="item-name">Paneer</td>
+          <td class="item-price">120/150</td>
+        </tr>
+        <tr>
+          <td class="item-name">Paneer</td>
+          <td class="item-price">120/150</td>
+        </tr>
+        <tr>
+          <td class="item-name">Paneer</td>
+          <td class="item-price">120/150</td>
+        </tr>
+        <tr>
+          <td class="item-name">Paneer</td>
+          <td class="item-price">120/150</td>
+        </tr>
+      </table>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
+    <button class="accordion">Section 2</button>
+    <div class="panel">
+      <table>
+        <tr class="item-row">
+          <td class="item-name">Paneer</td>
+          <td class="item-price">120/150</td>
+        </tr>
+        <tr>
+          <td class="item-name">Paneer</td>
+          <td class="item-price">120/150</td>
+        </tr>
+        <tr>
+          <td class="item-name">Paneer</td>
+          <td class="item-price">120/150</td>
+        </tr>
+        <tr>
+          <td class="item-name">Paneer</td>
+          <td class="item-price">120/150</td>
+        </tr>
+        <tr>
+          <td class="item-name">Paneer</td>
+          <td class="item-price">120/150</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var acc = document.getElementsByClassName("accordion");
+    var i;
 
-  function new_Row(rownum){
-         return '<tr><td class="sno">'+rownum+'.</td><td><select class="form-control ia_comp_select" required><option selected disabled>Select one</option><option value="Test">Test</option><option value="Assignment">Assignment</option><option value="Project">Project</option><option value="Other">Other</option></select></td><td><select class="form-control" required><option selected disabled>Select one</option><option value="january">January</option><option value="february">February</option><option value="march">March</option><option value="april">April</option><option value="may">May</option><option value="june">June</option><option value="july">July</option><option value="august">August</option><option value="september">September</option><option value="october">October</option><option value="november">November</option><option value="december">December</option></select></td><td><input class="btn btn-danger" type="button" id="remove" name="remove" value="Del"></td></tr>';
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
 
-
-    };
-
-
-
-  var max = 9;
-   var x = 1;
-
-   $('#add').click(function(){
-     if(x <= max){
-       var nr = new_Row(x+1);
-       $('#table_field').append(nr);
-       x++;
-     }
-
-   });
-   $('#table_field').on('click','#remove',function(){
-     $(this).closest('tr').remove();
-     cnt = 1;
-     $('.sno').each(function(){
-       $(this).first('td').html(++cnt+'.');
-     });
-     x--;
-   });
-
-   $(document).on({
-     change: function() {
-       var selected = $(this).val();
-       if(selected == 'Other'){
-         var cur_td = $(this).closest('td');
-         $(this).remove();
-         cur_td.html('<input class="form-control" type="text" name="other_ia_component" value="" placeholder="">')
-       }
-     }
-   }, '.ia_comp_select');
-
-  })
-    </script>
-      
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    } 
+  </script>
 </body>
 </html>
