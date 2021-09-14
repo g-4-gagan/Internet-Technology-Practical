@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Practice Ques 2</title>
+	<style type="text/css">
+	.container{
+		width: 50%;
+		align-items: center;
+		margin: auto;
+		margin-top: 40px;
+		border: 1px solid black;
+		border-radius: 5px;
+		padding: 3%;
+		padding-left: 10%;
+	}
+	input[name='element'],.output{
+		height: 20px;
+		width: 60%;
+	}	
+	#btn-push,#btn-pop,#btn-reset{
+		width: 25%;
+		margin-top: 10px;
+		height: 25px;
+		margin-right: 3%;
+		font-weight: bold;
+		font-size: 15px;
+	}
+	.output{
+		margin-top: 15px;
+		border: 1px solid black;
+		border-radius: 5px;
+		min-height: 150px;
+	}	
+	</style>
+</head>
+<body>
+	<div class="container">
+		<input type="text" name="element"/>
+		<br/>
+		<div class="output">
+			Output Panel:-
+			<p id="screen">
+			</p>
+		</div>
+		<button id="btn-reset">Reset</button>
+	</div>
+	<script type="text/javascript">
+		var screen = document.getElementById('screen');
+		var btncheck = document.getElementById('btn-check');
+		var btnreset = document.getElementById('btn-reset');
+		var element = document.querySelector('input[name="element"]');
+		function displayOutput(operation=null){
+			var out;
+			if (operation){
+				var opr;
+				if (operation === 'check') {
+					var temp = element.value;
+					if(temp){
+						if(temp.match(/^\d*$/))
+						{
+							out = "Number";
+						}
+						else{
+							out = "String";
+						}
+					}
+					else{
+						out = "Input Field is Empty!!";
+					}
+					
+				}
+				element.value = "";
+				element.focus();			
+			}
+			else{
+				out = "Enter something in Input field to check";
+			}
+			screen.innerHTML=out;
+		}
+		btnreset.addEventListener('click',function(){
+			displayOutput();
+		});
+		element.addEventListener('change',function(){
+			displayOutput('check');
+		});
+		displayOutput();
+	</script>
+
+</body>
+</html>

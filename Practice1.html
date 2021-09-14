@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Practice Ques 1</title>
+	<style type="text/css">
+	.container{
+		width: 50%;
+		align-items: center;
+		margin: auto;
+		margin-top: 40px;
+		border: 1px solid black;
+		border-radius: 5px;
+		padding: 3%;
+		padding-left: 10%;
+	}
+	input[name='element'],.output{
+		height: 20px;
+		width: 60%;
+	}	
+	#btn-push,#btn-pop,#btn-reset{
+		width: 25%;
+		margin-top: 10px;
+		height: 25px;
+		margin-right: 3%;
+		font-weight: bold;
+		font-size: 15px;
+	}
+	.output{
+		margin-top: 15px;
+		border: 1px solid black;
+		border-radius: 5px;
+		min-height: 150px;
+	}	
+	</style>
+</head>
+<body>
+	<div class="container">
+		<input type="text" name="element"/>
+		<br/>
+		<button id="btn-push">Push</button>
+		<button id="btn-pop">Pop</button>
+		<div class="output">
+			The entered array is:-
+			<p id="screen">
+			</p>
+		</div>
+		<button id="btn-reset">Reset</button>
+	</div>
+	<script type="text/javascript">
+		var ar = [2,3,4];
+		var screen = document.getElementById('screen');
+		var btnpush = document.getElementById('btn-push');
+		var btnpop = document.getElementById('btn-pop');
+		var btnreset = document.getElementById('btn-reset');
+		var element = document.querySelector('input[name="element"]');
+		function displayOutput(operation=null){
+			var out;
+			if (operation){
+				var opr;
+				out = "Previous Array:- "+ar.join(" ")+"<br>";
+				if (operation === 'push') {
+					var temp = element.value;
+					if(temp){
+						ar.push(temp);
+					    opr="Element "+temp+" has been pushed to Array";
+					}
+					opr = "Input Field is Empty!!";
+				}
+				else if(operation === 'pop'){
+					opr="Element "+ar.pop()+" has been popped out of Array";
+				}
+				element.value = "";
+				element.focus();
+				out+="Operation:- "+opr+"<br>New Array:- "+ar.join(" ");			
+			}
+			else{
+				ar = [];
+				out="There is no element in the array";
+			}
+			screen.innerHTML=out;
+		}
+		btnreset.addEventListener('click',function(){
+			displayOutput();
+		});
+		btnpush.addEventListener('click',function(){
+			displayOutput('push');
+		});
+		btnpop.addEventListener('click',function(){
+			displayOutput('pop');
+		});
+		displayOutput();
+	</script>
+
+</body>
+</html>
