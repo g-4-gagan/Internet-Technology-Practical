@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>Mathematical Expression</title>
+</head>
+<body >
+    <form name = "form1">
+        <table>
+            <tr>
+                <td>Expression</td>
+                <td><input type = "text" name = "exptext" /></td>
+            </tr>
+            <tr>
+                 <td><input type = "button" value = "Evaluate" onclick = "math_exp()" /></td>
+
+            </tr>
+            <tr>
+                <td>Result</td>
+                <td><input type = "text" name = "resulttext" /></td>
+            </tr>
+        </table>
+    </form>
+    <script type = "text/javascript">
+	    function math_exp()
+	    {
+	        var x = document.form1.exptext.value;
+	        var result = eval(x);
+	        document.form1.resulttext.value = result;
+	    }
+	</script>
+</body>
+</html>

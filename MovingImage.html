@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Moving Image</title>
+	<style type="text/css">
+		.container{
+			width: 100%;
+			padding: 0px;
+			margin: 0px;
+		}
+		.container img{
+			padding: 0px;
+			margin: 0px;
+		}
+		#btn-stop, #btn-start{
+			font-size: 18px;
+			font-weight: bold;
+			color: white;
+			margin-left: 2%;
+			border-radius: 10px;
+			min-width: 10%;
+			margin-top: 1rem;
+
+		}
+		#btn-stop{
+			background-color: red;
+		}
+		#btn-start{
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<h1>Moving Image Web page using javascript</h1>
+	<div class="container">
+		<img src="https://picsum.photos/200/">
+	</div>
+	<button id="btn-start">Start</button>
+	<button id="btn-stop">Stop</button>
+	<script type="text/javascript">
+		var image = document.querySelector('.container img');
+		var container = document.querySelector('.container');
+		function movingImage(){
+			leftMargin = Number(image.style.marginLeft.split('px')[0]);
+			if(leftMargin+image.offsetWidth<=container.offsetWidth)
+			{
+				image.style.marginLeft = leftMargin+10+"px";
+			}
+			else{
+				image.style.marginLeft = "0px";
+			}
+		}
+		var abc = setInterval(movingImage,200);
+		var btnStop = document.getElementById('btn-stop');
+		var btnStart = document.getElementById('btn-start');
+		btnStop.addEventListener('click',()=>{
+			clearInterval(abc);
+		});
+		btnStart.addEventListener('click',()=>{
+			abc = setInterval(movingImage,200);
+		});
+	</script>
+
+</body>
+</html>
