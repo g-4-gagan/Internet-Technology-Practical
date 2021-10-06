@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Add Mutiple</title>
+</head>
+<body>
+	<h1>Adding Multiple Fields Dynamically</h1>
+	<div>
+		<div>
+			<label for="name">Your Name: </label>
+			<input type="text" name="name" placeholder="Your Name Here">
+		</div>
+	</div>
+	<button class="add_btn">Add More fields</button>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".add_btn").click(function(e){
+				temp=$(this).siblings("div");
+				var x =$(this).siblings("div").children()[0].cloneNode(true);
+				// x.innerHTML ='abc';
+				let removeButton = document.createElement('Button');
+				removeButton.className='remove_btn';
+				removeButton.textContent='Remove';
+				var attr = document.createAttribute('onclick');
+				attr.nodeValue='removeItem()';
+				removeButton.setAttributeNode(attr);
+				x.append(removeButton);
+				temp.append(x);
+				console.log(x);
+			});
+		});
+		function removeItem(){
+			// var x = ;
+			// console.log(x);
+			// x.remove();
+		}
+	</script>
+
+</body>
+</html>

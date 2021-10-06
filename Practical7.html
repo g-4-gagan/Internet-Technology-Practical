@@ -27,28 +27,62 @@
 	<table id="pet-data">
 		<thead>
 			<tr>
-				<td>Name</td>
-				<td>Age</td>
-				<td>Weight</td>
-				<td>Type</td>
-				<td>Likes</td>
+				<td>ID</td>
+				<td>Title</td>
+				<td>Body</td>
+				<!-- <td>Type</td>
+				<td>Likes</td> -->
 			</tr>
 		</thead>
+		<tbody id="content">
+		</tbody>
 	</table>
 
 	<button id="btn-fetch">Fetch Data</button>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript">
-		$("#btn-fetch").click(function(){
-		  $.ajax({
-		  		type: "Get",
-			    url: "https://jsonplaceholder.typicode.com/posts",
-			    dataType: "json", 
-			    success: function(result){
-		   			 console.log(result);
-		  			}
-			});
+		// $("#btn-fetch").click(function(){
+		//   $.ajax({
+		//   		type: "Get",
+		// 	    url: "https://jsonplaceholder.typicode.com/posts",
+		// 	    dataType: "json", 
+		// 	    success: function(result){
+		//    			 console.log(result);
+		//   			}
+		// 	});
+		// });
+		var btnFetch = document.getElementById('btn-fetch');
+		var content = document.getElementById('content');
+
+		btnFetch.addEventListener('click', ()=>{
+			const xhr = new XMLHttpRequest();
+
+			xhr.open("GET",'https://jsonplaceholder.typicode.com/posts',true);
+
+			xhr.onload = ()=>{
+				console.log(xhr.responseText);
+				renderHtml(JSON.parse(xhr.responseText));
+			}
+
+			xhr.send();
+
 		});
+
+		function renderHtml(data){
+			for (var i = 0; i <= 9; i++) {
+				let tr = document.createElement('tr');
+				let htmlpart = "";
+				htmlpart += "<td>"+data[i].id+"</td>"+"<td>"+data[i].title+"</td>"+"<td>"+data[i].body+"</td>";
+				tr.innerHTML = htmlpart;
+				content.append(tr);
+				// console.log(tr);
+				htmlpart="";
+			}
+
+		}
+
+		
+
 	</script>
 
 </body>
