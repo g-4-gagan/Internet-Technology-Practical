@@ -24,19 +24,23 @@
 	</style>
 </head>
 <body>
-	<table id="pet-data">
+	<!-- <table id="pet-data">
 		<thead>
 			<tr>
 				<td>ID</td>
 				<td>Title</td>
-				<td>Body</td>
+				<td>Body</td> -->
 				<!-- <td>Type</td>
 				<td>Likes</td> -->
-			</tr>
+			<!-- </tr>
 		</thead>
 		<tbody id="content">
 		</tbody>
-	</table>
+	</table> -->
+
+	<div id="content">
+		
+	</div>
 
 	<button id="btn-fetch">Fetch Data</button>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -57,7 +61,7 @@
 		btnFetch.addEventListener('click', ()=>{
 			const xhr = new XMLHttpRequest();
 
-			xhr.open("GET",'https://jsonplaceholder.typicode.com/posts',true);
+			xhr.open("GET",'/pet.json',true);
 
 			xhr.onload = ()=>{
 				console.log(xhr.responseText);
@@ -69,12 +73,13 @@
 		});
 
 		function renderHtml(data){
-			for (var i = 0; i <= 9; i++) {
-				let tr = document.createElement('tr');
+			content.innerHTML = "";
+			for (var i = 0; i <= data.length; i++) {
+				let p = document.createElement('p');
 				let htmlpart = "";
-				htmlpart += "<td>"+data[i].id+"</td>"+"<td>"+data[i].title+"</td>"+"<td>"+data[i].body+"</td>";
-				tr.innerHTML = htmlpart;
-				content.append(tr);
+				htmlpart += data[i].name+" is a "+data[i].type+" with age "+data[i].age+" years and weight "+data[i].weight+"kg and likes "+data[i].likes;
+				p.innerHTML = htmlpart;
+				content.append(p);
 				// console.log(tr);
 				htmlpart="";
 			}
