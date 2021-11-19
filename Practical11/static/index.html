@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 11</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body{
+            height: 100vh;
+            width: 100vw;
+            background-color: #f5f5d6;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .signIn-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .signUp-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            font-size: 15px;
+            margin: 8px 0;
+            padding: 5px;
+            width: 230px;
+        }
+
+        input[type='submit'] {
+            width: 244px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="signIn-container">
+            <form action="/signIn" method="POST">
+                <h1>SignIn</h1>
+                <input type="text" name="signInUsername" id="signInUsername" placeholder="Username" autocomplete="off">
+                <input type="password" name="signInPassword" id="signInPassword" placeholder="Password"
+                    autocomplete="off">
+                <input type="submit" value="Sign In">
+            </form>
+        </div>
+
+        <div class="signUp-container">
+            <form action="/signUp" method="POST">
+                <h1>SignUp</h1>
+                <input type="text" name="name" id="name" placeholder="Name" autocomplete="off">
+                <input type="text" name="signUpUsername" id="signUpUsername" placeholder="Username" autocomplete="off">
+                <input type="password" name="signUpPassword" id="signUpPassword" placeholder="Password"
+                    autocomplete="off">
+                <input type="text" name="phone" id="phone" placeholder="Phone Number" autocomplete="off">
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
